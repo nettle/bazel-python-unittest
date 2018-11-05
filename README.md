@@ -71,6 +71,6 @@ Run test function with debug logs:
 
 You can also run unit tests directly without Bazel with the same options:
 
-    python test/run.py
+    python test/run.py -s test/
 
 NOTE however *.pyc files will be created!
