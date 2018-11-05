@@ -18,7 +18,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("-v", "--verbose", action="count",
                         help="verbosity level, use: [-v | -vv | -vvv]")
-    parser.add_argument("-s", "--start-directory", default=None,
+    parser.add_argument("-s", "--start-directory", default=".",
                         help="directory to start discovery ('.' default)")
     parser.add_argument("-p", "--pattern", default="test*.py",
                         help="pattern to match test files ('test*.py' default)")
@@ -28,9 +28,6 @@ def main():
 
     if args.verbose > 2:
         logging.basicConfig(level=logging.DEBUG, format="DEBUG: %(message)s")
-
-    if not args.start_directory:
-        args.start_directory = cur_dir
 
     loader = unittest.TestLoader()
     if args.test:
