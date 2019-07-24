@@ -9,6 +9,9 @@ import unittest
 
 def main():
     """Parse args, collect tests and run them"""
+    # Disable *.pyc files
+    sys.dont_write_bytecode = True
+
     # Add ".." to module search path
     cur_dir = os.path.dirname(os.path.realpath(__file__))
     top_dir = os.path.abspath(os.path.join(cur_dir, os.pardir))
@@ -16,15 +19,18 @@ def main():
 
     # Parse command line arguments
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("-v", "--verbose", action="count",
+    parser.add_argument("-v", "--verbose", action="count", default=0,
                         help="verbosity level, use: [-v | -vv | -vvv]")
-    parser.add_argument("-s", "--start-directory", default=".",
-                        help="directory to start discovery ('.' default)")
+    parser.add_argument("-s", "--start-directory", default=None,
+                        help="directory to start discovery")
     parser.add_argument("-p", "--pattern", default="test*.py",
                         help="pattern to match test files ('test*.py' default)")
     parser.add_argument("test", nargs="*",
                         help="test specs (e.g. module.TestCase.test_func)")
     args = parser.parse_args()
+
+    if not args.start_directory:
+        args.start_directory = cur_dir
 
     if args.verbose > 2:
         logging.basicConfig(level=logging.DEBUG, format="DEBUG: %(message)s")

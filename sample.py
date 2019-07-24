@@ -6,7 +6,7 @@ def sample_func(say=True):
     """Sample func"""
     logging.debug("Enter sample_func()")
     if say:
-        print "::: Sample func"
+        logging.info("Sample func")
     return True
 
 
