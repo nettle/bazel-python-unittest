@@ -17,3 +17,7 @@ class AnotherTest(unittest.TestCase):
     def test_two(self):
         """Test two"""
         self.assertTrue(3 == 3)
+
+
+if __name__ == "__main__":
+    unittest.main()

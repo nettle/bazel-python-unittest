@@ -17,3 +17,7 @@ class TestOne(unittest.TestCase):
     def test_two(self):
         """Test two"""
         self.assertTrue(2 == 2)
+
+
+if __name__ == "__main__":
+    unittest.main()
